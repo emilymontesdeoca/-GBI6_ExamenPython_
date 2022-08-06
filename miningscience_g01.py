@@ -30,8 +30,8 @@ def download_pubmed(keyword):
     return (my_data2)
 
 
-def science_plots(file):
-    """Con esta funcion se va a leer la fuente que se ha empleado en el keyword para la busqueda en Pubmed, por medio del uso de expresiones regulares para delimitar cada posible varinte de lectura, con el de que tome el pais y el autor de cada registro. Ademas generar una dataframe relacionando las coordenadas y el pais con el uso de la data coordenadas.txt/ recalcando que luego se tendra que hacer un arreglo para que se grafique solo los 5 mas abundantes 
+def science_plots(my_data2):
+    """Con esta funcion se va a leer la fuente que se ha empleado en el keyword para la busqueda en Pubmed, por medio del uso de expresiones regulares para delimitar cada posible varinte de lectura, con el fin de que tome el pais y el autor de cada registro. Ademas generar una dataframe relacionando las coordenadas y el pais con el uso de la data coordenadas.txt/ recalcando que luego se tendra que hacer un arreglo para que se grafique solo los 5 mas abundantes 
     """
     AD = []
     paises1 = []
@@ -43,9 +43,6 @@ def science_plots(file):
     paises7 = []
     paises8 = []
     paises9 = []
-    paises10 = []
-    paises11 = []
-    paises12 = []
     paisesT = []
     
     
@@ -82,16 +79,8 @@ def science_plots(file):
             pais9 = re.findall(r'\,\s(\w{3,16}[^0-9\,]\s\w{2,3}[^0-9\,]\s\w{3,16}[^0-9\,])\. Electronic address:\s[a-z0-9_\.-]+@[\da-z\.-]+\.[a-z\.]{2,6}\.', AD)
             paises9.append(pais9)
 
-            pais10 = re.findall(r'\,\s\w{3,9}[0-9\-]\,\s(\w{2,16})\.', AD)
-            paises10.append(pais10)
-            
-            pais11 = re.findall(r'\,\s\w{3,9}[0-9\-]\,\s(\w{2,16}[^0-9\,]\s\w{2,16}[^0-9])\.', AD)
-            paises11.append(pais11)
-            
-            pais12 = re.findall(r'\,\s\w{3,9}[0-9\-]\,\s(\w{3,16}[^0-9\,]\s\w{2,3}[^0-9\,]\s\w{3,16}[^0-9\,])\.', AD)
-            paises12.append(pais12)
-
-            paisesT=paises1+paises2+paises3+paises4+paises5+paises6+paises7+paises8+paises9+paises10+paises11+paises12
+        
+            paisesT=paises1+paises2+paises3+paises4+paises5+paises6+paises7+paises8+paises9
 
     paisesT= list(itertools.chain.from_iterable(paisesT))
     len(paisesT)
@@ -121,6 +110,6 @@ def science_plots(file):
     tablaPaises["Pais"] = pais 
     tablaPaises["Numero de autores"] = c
      
-    return
+    return (tablaPaises)
     
     
